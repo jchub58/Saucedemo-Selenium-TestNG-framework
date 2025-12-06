@@ -1,3 +1,6 @@
+package com.saucedemo.tests;
+
+import com.saucedemo.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,13 +15,13 @@ public class LoginTests {
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        driver.get("https://www.saucedemo.com");
+        driver.get(ConfigReader.getProperty("base.url"));
     }
 
     @Test
     public void testValidLogin() {
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("user-name")).sendKeys(ConfigReader.getProperty("valid.username"));
+        driver.findElement(By.id("password")).sendKeys(ConfigReader.getProperty("valid.password"));
         driver.findElement(By.id("login-button")).click();
 
         String title = driver.findElement(By.className("title")).getText();
