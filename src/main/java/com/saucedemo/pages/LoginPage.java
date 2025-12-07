@@ -3,8 +3,7 @@ package com.saucedemo.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
-    private WebDriver driver;
+public class LoginPage extends BasePage {
 
     private By usernameField = By.id("user-name");
     private By passwordField = By.id("password");
@@ -12,19 +11,19 @@ public class LoginPage {
     private By errorMessage = By.cssSelector("[data-test='error']");
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);  // Calling BasePage constructor
     }
 
     public void enterUsername(String username) {
-        driver.findElement(usernameField).sendKeys(username);
+        waitAndSendKeys(usernameField, username);  // Now using BasePage methods
     }
 
     public void enterPassword(String password) {
-        driver.findElement(passwordField).sendKeys(password);
+        waitAndSendKeys(passwordField, password);
     }
 
     public void clickLogin() {
-        driver.findElement(loginButton).click();
+        waitAndClick(loginButton);
     }
 
     public void login(String username, String password) {
@@ -34,6 +33,6 @@ public class LoginPage {
     }
 
     public String getErrorMessage() {
-        return driver.findElement(errorMessage).getText();
+        return waitAndGetText(errorMessage);
     }
 }
