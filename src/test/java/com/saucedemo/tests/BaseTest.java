@@ -1,10 +1,10 @@
 package com.saucedemo.tests;
 
-import factory.DriverFactory;
+import com.saucedemo.utils.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import utils.ConfigReader;
+import com.saucedemo.utils.ConfigReader;
 
 public class BaseTest {
     protected WebDriver driver;
