@@ -15,7 +15,7 @@ public class LoginPage extends BasePage {
     }
 
     public void enterUsername(String username) {
-        waitAndSendKeys(usernameField, username);  // Now using BasePage methods
+        waitAndSendKeys(usernameField, username);
     }
 
     public void enterPassword(String password) {

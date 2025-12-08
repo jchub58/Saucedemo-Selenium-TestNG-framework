@@ -39,4 +39,8 @@ public class ProductsPage {
     public void goToCart() {
         driver.findElement(cartLink).click();
     }
+
+    public String getCartBadgeCount(){
+        return driver.findElement(cartBadge).getText();
+    }
 }
