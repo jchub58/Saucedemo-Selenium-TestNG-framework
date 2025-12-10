@@ -1,5 +1,6 @@
 package com.saucedemo.tests;
 
+import com.saucedemo.dataprovider.LoginDataProvider;
 import com.saucedemo.tests.BaseTest;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -22,16 +23,21 @@ public class LoginTests extends BaseTest {
         loginPage = new LoginPage(driver);
     }
 
-    @Test(groups = {"smoke", "regression"})
-    @Story("Valid Login")
-    @Description("Test valid user login with standard credentials")
-    @Severity(SeverityLevel.CRITICAL)
-    public void testValidLogin() {
-        loginPage.login(
-                ConfigReader.getProperty("valid.username"),
-                ConfigReader.getProperty("valid.password")
-        );
+    @Test(dataProvider = "validCredentials",
+            dataProviderClass = LoginDataProvider.class,
+            groups = {"regression"})
+    public void testMultipleValidLogins(String username, String password) {
+        loginPage.login(username, password);
         ProductsPage productsPage = new ProductsPage(driver);
         Assert.assertEquals(productsPage.getPageTitle(), "Products");
+    }
+
+    @Test(dataProvider = "invalidCredentials",
+            dataProviderClass = LoginDataProvider.class,
+            groups = {"regression"})
+    public void testInvalidLoginMessages(String username, String password,
+                                         String expectedError) {
+        loginPage.login(username, password);
+        Assert.assertTrue(loginPage.getErrorMessage().contains(expectedError));
     }
 }
