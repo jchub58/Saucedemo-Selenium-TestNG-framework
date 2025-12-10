@@ -12,7 +12,7 @@ public class ProductsTest extends BaseTest {
     private ProductsPage productsPage;
 
     @BeforeMethod
-    public void initPages() {
+    public void pageContext() {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         loginPage.login(

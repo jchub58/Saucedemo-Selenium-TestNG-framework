@@ -13,7 +13,7 @@ public class CheckoutTest extends BaseTest {
     private CheckoutPage checkoutPage;
 
     @BeforeMethod
-    public void setup() {
+    public void pageContext() {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);

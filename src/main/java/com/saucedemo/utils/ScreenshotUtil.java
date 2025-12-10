@@ -1,6 +1,6 @@
 package com.saucedemo.utils;
 
-import factory.DriverFactory;
+import com.saucedemo.driverfactory.DriverFactory;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
